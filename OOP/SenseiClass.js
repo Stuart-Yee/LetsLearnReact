@@ -51,3 +51,8 @@ senseiSplinter.showStats();
 senseiSplinter.speakWisdom();
 senseiSplinter.sayName();
 senseiSplinter.showStats();
+
+const myString = "Abbracadabra"
+const result = myString.split("").map((val, idx)=> idx%2==0 ? val.toLowerCase() : val.toUpperCase()).join("");
+
+console.log(result);
