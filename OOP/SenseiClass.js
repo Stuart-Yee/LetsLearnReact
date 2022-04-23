@@ -56,3 +56,13 @@ const myString = "Abbracadabra"
 const result = myString.split("").map((val, idx)=> idx%2==0 ? val.toLowerCase() : val.toUpperCase()).join("");
 
 console.log(result);
+
+function ninjaBelt(ninja){
+    return function belt(beltColor){ //note the closure here!
+      console.log("Ninja "+ ninja + " has earned a " + beltColor +" belt.");
+    }
+  }
+//   ninjaBelt('Eileen')('black'); //note the double invocation here.
+ninjaBelt('Eileen'); //note the double invocation here.
+  
+  
