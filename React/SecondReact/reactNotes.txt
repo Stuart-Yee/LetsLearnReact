@@ -1,0 +1,9 @@
+Create a new react app:
+
+Navigate to project directory:
+npx create-react-app {app_name (no upper case letters)}
+
+Command will create a new directory for your project. 
+
+Navigate into new directory and:
+npm start
