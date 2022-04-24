@@ -11,7 +11,8 @@ function App() {
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
-        <NewComponent/>
+        <NewComponent myText={"balderdash!"}/>
+        <NewComponent myText={"Franklin loves applesauce"}/>
         <a
           className="App-link"
           href="https://reactjs.org"
