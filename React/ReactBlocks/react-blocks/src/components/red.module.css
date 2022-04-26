@@ -1,0 +1,59 @@
+.red { color: red;}
+
+.appClass {
+    background-color: #dddddd;
+    height: 800px;
+    width: 1200px;
+    display: inline-flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: column;
+
+}
+.headerClass {
+    background-color: #6aa84f;
+    height: 25%;
+    width: 90%;
+}
+.navClass{
+    background-color: #6fa8dc;
+    height: 70%;
+    width: 25%;
+}
+.mainClass{
+    background-color: #e06666;
+    height: 70%;
+    width: 70%;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+.subClass{
+    background-color: #ffd966;
+    height: 70%;
+    width: 90%;
+}
+.adClass{
+    background-color: #b4a7d6;
+    height: 25%;
+    width: 90%;
+}
+
+.flexOne {
+    height: 70%;
+    width: 90%;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flexTwo {
+    height: 70%;
+    width: 90%;
+    display: inline-flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+* {margin: 5px;}
