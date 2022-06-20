@@ -14,15 +14,24 @@ function print_odds(num, idx) {
 
 //Correct syntax for forEach defining a function within
 //the params
-numArr.forEach((val, idx, arr) => print_odds(val));
+// numArr.forEach((val, idx, arr) => print_odds(val));
 
 //incorrect syntax:
 //numArr.forEach(print_odds(val));
 
+// numArr.forEach((val, idx, arr) => {
+//     print_odds(val, idx);
+//     console.log("from the array: ", arr);
+// });
+
+function print_evens(num) {
+    if(num%2 ===0){
+        console.log("Even!", num);
+    } 
+}
+
 numArr.forEach((val, idx, arr) => {
-    print_odds(val, idx);
-    console.log("from the array: ", arr);
+    print_evens(val);
+    console.log("My index", idx);
+    console.log("this is the array:", arr);
 });
-/*loops through once executing the callback function
-then loops again executing the callback functin incrementing
-the index */
