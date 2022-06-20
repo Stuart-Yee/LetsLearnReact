@@ -7,6 +7,7 @@ const UserForm = (props) => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
+    const [fNameError, setFNameError] = useState("");
     
     const createUser = (e) => {
         e.preventDefault();
@@ -30,36 +31,49 @@ const UserForm = (props) => {
         }
     }
 
+    const fNameVal = (e) => {
+        setFirstname(e.target.value);
+        console.log(firstname, firstname.length);
+        if (firstname.length < 2) {
+            setFNameError("First Name must be at least two characters");
+        } else {
+            setFNameError("");
+        }
+    }
     
     return(
         <>
-        <form onSubmit={ createUser }>
+        <form onSubmit={ (e) => e.preventDefault() }>
             <div>
                 <label>First Name: </label> 
-                <input type="text" onChange={ (e) => setFirstname(e.target.value) } />
-                <p>{greaterThan("First name", firstname, 2)}</p>
+                <input type="text" onChange={ fNameVal} />
+                {
+                    fNameError ?
+                    <p style={{color:'red'}}>{fNameError}</p> :
+                    ''
+                }
             </div>
             <div>
                 <label>Last Name: </label> 
                 <input type="text" onChange={ (e) => setLastname(e.target.value) } />
-                <p>{greaterThan("Last name", lastname, 2)}</p>
+                <p style={{color:'red'}}>{greaterThan("Last name", lastname, 2)}</p>
             </div>
             <div>
                 <label>Email Address: </label> 
                 <input type="email" onChange={ (e) => setEmail(e.target.value) } />
-                <p>{greaterThan("Email", email, 2)}</p>
+                <p style={{color:'red'}}>{greaterThan("Email", email, 2)}</p>
             </div>
             <div>
                 <label>Password: </label>
                 <input type="password" onChange={ (e) => setPassword(e.target.value) } />
-                <p>{greaterThan("Password", password, 8)}</p>
-                <p>{matchPass()}</p>
+                <p style={{color:'red'}}>{greaterThan("Password", password, 8)}</p>
+                <p style={{color:'red'}}>{matchPass()}</p>
             </div>
             <div>
                 <label>Confirm Password: </label>
                 <input type="password" onChange={ (e) => setPasswordConfirm(e.target.value) } />
             </div>
-            <input type="submit" value="Create User" />
+            <input type="submit" value="Create User" onClick={createUser} />
         </form>
         <p>First Name: {firstname}</p>
         <p>Last Name: {lastname}</p>
