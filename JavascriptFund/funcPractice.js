@@ -35,3 +35,33 @@ numArr.forEach((val, idx, arr) => {
     console.log("My index", idx);
     console.log("this is the array:", arr);
 });
+
+// Use .filter()
+
+odds = numArr.filter((num) => {if(num%2===1){return num}else{return 0}});
+console.log(odds);
+
+//Use .map()
+
+evenAndOdd = odds.map((num, idx) => {if(idx%2===0){return num+1}else{return num}});
+console.log(evenAndOdd);
+
+
+
+//use .reduce()
+
+const sumThese = [1,2,3,4] 
+// Sum is 10
+
+function sumThis(a, b){
+    return a + b;
+}
+
+const start = 0;
+
+var total = sumThese.reduce((a,b)=>a+b, 0);
+console.log(total);
+console.log(sumThese);
+
+var totalWithCallback = sumThese.reduce((a,b) =>sumThis(a, b),0);
+console.log(totalWithCallback);
