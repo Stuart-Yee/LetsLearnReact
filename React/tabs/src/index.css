@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.tabs {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tab {
+  border: 1px gray solid;
+  width: 120px;
+}
+
+.tab-click{
+  border: 1px gray solid;
+  width: 120px;
+  animation-name: bg-click;
+  animation-duration: 1s;
+}
+
+@keyframes bg-click {
+  from {background-color: white;}
+  to {background-color: red;}  
+}
+
+.content {
+  margin-top: 5px;
+  height: 200px;
+  border: 1px gray solid;
+  padding: 10px;
+}
