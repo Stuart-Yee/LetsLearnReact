@@ -13,4 +13,4 @@ const Boxes = (props) => {
     )
 }
 
-export default Boxes
+export default Boxes;
