@@ -1,23 +1,22 @@
-import logo from './logo.svg';
+import {useState} from 'react';
 import './App.css';
+import Button from './components/button';
+import Pokemon from './components/pokemon';
+import Limit from './components/limit';
 
 function App() {
+  const baseURL = "https://pokeapi.co/api/v2/pokemon";
+
+  const [getPokemon, setPokemon] = useState([]);
+  const [fetchLimit, setFetchLimit] = useState(10);
+
+  console.log(getPokemon);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Limit update={setFetchLimit} limit={fetchLimit}/>
+      <Button label={"Get Pokemon"} url={baseURL} limit={fetchLimit} handler={setPokemon}/>
+      <Pokemon pokemon={getPokemon}/>
     </div>
   );
 }
