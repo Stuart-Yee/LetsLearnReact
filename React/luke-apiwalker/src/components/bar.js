@@ -1,12 +1,13 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const Bar = (props) => {
     console.log("Rendering Bar")
-    const items = ['people', 'planets'];
 
-    const [navType, setNavType] = useState(items[0]);
     const [navId, setNavId] = useState();
+    const [items, setItems] = useState(['people', 'planets']);
+    const [navType, setNavType] = useState(items[0]);
     const navigate = useNavigate();
 
     const submitHandler = (e) => {
@@ -14,8 +15,21 @@ const Bar = (props) => {
         let ID;
         navId != null? ID = navId: ID = 1;
         navigate(`/${navType}/${ID}`)
-
     }
+
+    useEffect(()=>{
+        axios.get('https://swapi.dev/api/')
+        .then((res)=>{
+            let resources =[];
+            for (const key in res.data) {
+                resources.push(key)
+            }
+            setItems([...resources]);
+
+
+        })
+
+    }, []);
 
     return (
         <form onSubmit={submitHandler}>

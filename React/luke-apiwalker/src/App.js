@@ -8,6 +8,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Page/>}/>
         <Route path="/:type/:id" element={<Page/>}/>
+        <Route path="/bad" element={<Page badRequest={true}/>}/>
       </Routes>
 
     </div>
