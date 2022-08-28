@@ -1,5 +1,4 @@
 import Bar from "./bar";
-import { useState } from "react";
 import Planet from "./planet";
 import Person from "./person";
 import Resource from "./resource";

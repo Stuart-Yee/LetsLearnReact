@@ -4,12 +4,12 @@ import BadRequest from "./badRequest";
 
 const Planet = (props) => {
     const baseURL = 'https://swapi.dev/api/';
-    const reqURL =`${baseURL}planets/${props.id}`;
 
     const [response, setResponse] = useState();
     const [errorRes, setErrorRes] = useState(false);
 
     useEffect(()=>{
+        const reqURL =`${baseURL}planets/${props.id}`;
         console.log("Request URL", reqURL);
         axios.get(reqURL)
         .then(res=>{setResponse(res.data); setErrorRes(false); console.log(res.data)})

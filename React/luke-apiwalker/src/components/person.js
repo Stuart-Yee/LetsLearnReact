@@ -5,16 +5,13 @@ import { Link } from "react-router-dom";
 
 const Person = (props) => {
     const baseURL = 'https://swapi.dev/api/';
-    const reqURL =`${baseURL}people/${props.id}`;
 
     const [response, setResponse] = useState();
     const [errRes, setErrRes] = useState(false);
     const [homeworld, setHomeworld] = useState({name: "", url: ""});
 
-    const [planet, setPlanet] = useState();
-
     useEffect(()=>{
-        // console.log("Here's the useEffect");
+        const reqURL =`${baseURL}people/${props.id}`;
         console.log("Request URL", reqURL);
         axios.get(reqURL)
         .then(
@@ -26,19 +23,18 @@ const Person = (props) => {
                 axios.get(homeworldURL).then(hwres=>{
                     console.log("Homeworld query", hwres.data)
                     let id =homeworldURL.slice(-3,-1);
-                    isNaN(id) ? id = homeworldURL.slice(-2,-1) : id = id;
+                    isNaN(id) ? id = homeworldURL.slice(-2,-1) : id =homeworldURL.slice(-3,-1);
                     setHomeworld({name: hwres.data.name, url: `/planets/${id}`});
                     console.log("homeworld in state", homeworld);
-                    setPlanet(hwres.data.name);
-                    console.log("planet state", planet)
                 })
             }
                 
             )
         .catch((error)=>{console.log("Whoopsies"); setErrRes(true)});
+        // eslint-disable-next-line
     }, [props.id]);
     console.log("response state", response);
-    console.log("state data", planet, homeworld);
+    console.log("homeworld state", homeworld);
     
     return(
         errRes ? <BadRequest/>:

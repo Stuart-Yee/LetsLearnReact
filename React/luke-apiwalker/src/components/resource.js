@@ -4,25 +4,24 @@ import BadRequest from "./badRequest";
 
 const Resource = (props) => {
     const baseURL = 'https://swapi.dev/api/';
-    const reqURL =`${baseURL}${props.type}/${props.id}`;
 
     const [response, setResponse] = useState();
     const [errRes, setErrRes] = useState(false);
 
     useEffect(()=>{
-        // console.log("Here's the useEffect");
+        const reqURL =`${baseURL}${props.type}/${props.id}`;
         console.log("Resource URL", reqURL);
         axios.get(reqURL)
         .then(
             res=>{setResponse(res.data); 
                 setErrRes(false);
-                console.log(res.data)
             })
         .catch((error)=>{console.log("Whoopsies"); setErrRes(true)});
     }, [props.type, props.id]);
     console.log("response state", response);
 
-    const keys = Object.keys(response)
+    let keys = []
+    response != null ? keys = Object.keys(response): keys = []
     
     return(
         errRes ? <BadRequest/>:
