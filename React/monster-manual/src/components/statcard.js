@@ -1,13 +1,25 @@
 import { useState, useEffect, useContext } from "react";
 import axios from 'axios';
 import BaseURLContext from "../context/URLContext";
+import DiceRoller from "../utils/polydice";
 
 const StatCard = (props) => {
+    console.log("Time to render...")
 
     const {monster} = props;
     const [monsterData, setMonsterData] = useState();
+    const [hitPoints, setHitPoints] = useState()
 
     const baseURL = useContext(BaseURLContext);
+
+    const rollHitDice = () => {
+        const result = DiceRoller.rollDieCode(monsterData.hit_dice);
+        console.log(`Rolling ${monsterData.hit_dice} for hit points and got a ${result}`)
+        
+
+
+        setHitPoints(`${result} (Default: ${monsterData.hit_points} )`)
+    }
 
     useEffect(()=>{
         console.log(monster);
@@ -15,6 +27,9 @@ const StatCard = (props) => {
         .then(res=>{
             console.log(res.data);
             setMonsterData(res.data);
+            setHitPoints(res.data.hit_points);
+            // console.log(`Rolling hit dice ${res.data.hit_dice}`, DiceRoller.rollDieCode(res.data.hit_dice))
+
             res.data.actions.forEach(action => {
                 for (const key in action){
                     console.log(key, action[key])
@@ -45,10 +60,11 @@ const StatCard = (props) => {
                         </tr>
                         <tr>
                             <td><span className="bold">Hit Dice: </span>{monsterData.hit_dice}</td>
-                            <td><span className="bold">Hit Points: </span>{monsterData.hit_points}</td>
+                            <td><span className="bold">Hit Points: </span>{hitPoints}</td>
                         </tr>
                     </tbody>
             </table>
+            <button onClick={rollHitDice}>Roll for Hit Points</button>
             
 
         </div>
