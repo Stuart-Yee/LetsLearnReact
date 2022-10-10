@@ -1,6 +1,12 @@
 const express = require("express");
 const { faker } = require('@faker-js/faker');
+var cors = require('cors');
+
 const app = express();
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 
 class User {
   constructor(password, email, phoneNumber, lastName, firstName, _id) {
@@ -30,6 +36,9 @@ class Company {
 
 }
 
+let users = [];
+let companies = [];
+
 function createUser(){
   const password = faker.lorem.word();
   const email = faker.internet.email();
@@ -39,6 +48,7 @@ function createUser(){
   const id = faker.database.mongodbObjectId();
 
   const user = new User(password, email, phoneNumber, lastName, firstName, id);
+  users.push(user);
   return user;
 }
 
@@ -53,6 +63,7 @@ function createCompany() {
     country: faker.address.country()
   };
   const company = new Company(id, name, address);
+  companies.push(company);
   return company;
 }
 
@@ -72,8 +83,19 @@ app.get("/api/test", (req, res) => {
 });
 
 app.get("/api/user/new", (req, res) => {
+  console.log(req);
   res.send(createUser());
 });
+
+app.get("/api/companies/all", (req, res)=> {
+  console.log("fetching company data");
+  res.send(companies);
+})
+
+app.get("/api/user/all", (req, res) => {
+  console.log("fetching user data")
+  res.send(users);
+})
 
 app.get("/api/companies/new", (req, res) => {
   res.send(createCompany());
