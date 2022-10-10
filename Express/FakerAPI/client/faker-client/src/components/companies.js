@@ -19,14 +19,17 @@ const Companies = (props) => {
         .catch((err)=>{
             console.log("Server Error" + err);
         });
-        axios.get(baseDomain+"/user/new")
-        .then((res)=>{console.log(res)})
-        .catch(err=>console.log(err));
 
     }, []);
 
     return (
-        <h1>List of companies {baseDomain}</h1>
+        <div>
+            <h1>List of companies</h1>
+            {companies.map((val, idx)=>{
+                return <Company key={idx} name={val.name} address={val.address}/>
+            })}
+        </div>
+        
     )
 
 };

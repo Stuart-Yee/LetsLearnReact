@@ -5,6 +5,7 @@ import BaseDomainContext from './context/baseDomain';
 import Companies from './components/companies';
 import CreateUser from './components/createUser';
 import Users from './components/users';
+import CreateCompany from './components/createCompany';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
             <Users/>
           </div>
           <div className='col'>
-            <h2>Create Company goes here</h2>
+            <CreateCompany/>
             <Companies/>
           </div>
           
